@@ -8,8 +8,9 @@
         options.user.active ? "活跃" : "不活跃"
       }}
     </p>
+    <input type="text" placeholder="搜索消息" v-model="searchTerm" />
     <ul>
-      <li v-for="msg in messages" :key="msg.id">{{ msg.content }}</li>
+      <li v-for="msg in searchedMessages" :key="msg.id">{{ msg.content }}</li>
     </ul>
     <button @click="messages = []">删除全部</button>
     <button @click="options.title = '这是标题'">修改标题</button>
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 export default {
   setup() {
     const messages = ref([
@@ -26,6 +27,16 @@ export default {
       { id: 1, content: "这是一条消息提醒2" },
       { id: 1, content: "这是一条消息提醒3" },
     ]);
+
+    // 计算属性
+    const searchTerm = ref("");
+    const searchedMessages = computed(() => {
+      if (searchTerm.value === "") return messages.value;
+      return messages.value.filter((msg) =>
+        msg.content.includes(searchTerm.value)
+      );
+    });
+
     const options = reactive({
       title: "消息列表",
       user: {
@@ -34,7 +45,7 @@ export default {
       },
     });
 
-    return { messages, options };
+    return { messages, options, searchTerm, searchedMessages };
   },
 };
 </script>
