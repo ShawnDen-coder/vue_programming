@@ -1,30 +1,46 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <main>
+    <div class="container"><MessageList /></div>
+  </main>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script>
+import MessageList from "./components/MessageList.vue";
+export default {
+  components: {
+    MessageList,
+  },
+  setup() {},
+};
+</script>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, "PingFang SC", "Microsoft Yahei", sans-serif;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+body {
+  background-color: #0f141c;
+  opacity: 1;
+  background-image: radial-gradient(
+    #212943 0.6000000000000001px,
+    #0f141c 0.6000000000000001px
+  );
+  background-size: 12px 12px;
+  color: white;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.container {
 }
 </style>
