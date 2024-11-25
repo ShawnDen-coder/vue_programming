@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watch } from "vue";
 export default {
   setup() {
     const messages = ref([
@@ -37,13 +37,31 @@ export default {
       );
     });
 
-    const options = reactive({
+    const options = ref({
       title: "消息列表",
       user: {
         name: "张三",
         active: true,
       },
     });
+
+    // 如果监听的是ref ,那么普通数据类型是能过够直接拿到新值和旧值的，但是如果需要监听对象的变化，那么需要使用 deep:true
+    watch(
+      () => options.value,
+      (newVal, oldVal) => {
+        console.log(newVal, oldVal);
+      },
+      {
+        deep: true,
+      }
+    );
+
+    watch(
+      () => options.value,
+      (newVal, oldVal) => {
+        console.log(newVal, oldVal);
+      }
+    );
 
     return { messages, options, searchTerm, searchedMessages };
   },
