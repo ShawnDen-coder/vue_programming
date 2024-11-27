@@ -1,14 +1,14 @@
 <template>
   <main>
-    <div class="container"><MessageList /></div>
+    <div class="container"><MovieCard /></div>
   </main>
 </template>
 
 <script>
-import MessageList from "./components/MessageList.vue";
+import MovieCard from "./components/MovieCard.vue";
 export default {
   components: {
-    MessageList,
+    MovieCard,
   },
   setup() {},
 };
@@ -39,8 +39,5 @@ body {
   max-width: 100%;
   display: grid;
   place-items: center;
-}
-
-.container {
 }
 </style>
