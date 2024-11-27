@@ -13,13 +13,15 @@
       <li v-for="msg in searchedMessages" :key="msg.id">{{ msg.content }}</li>
     </ul>
     <button @click="messages = []">删除全部</button>
-    <button @click="options.title = '这是标题'">修改标题</button>
+    <button @click="options.title = '这是标题' + Math.random()">
+      修改标题
+    </button>
     <button @click="options.user.name = '李四'">修改用户</button>
   </div>
 </template>
 
 <script>
-import { ref, reactive, computed, watch } from "vue";
+import { ref, reactive, computed, watch, watchEffect } from "vue";
 export default {
   setup() {
     const messages = ref([
@@ -45,23 +47,22 @@ export default {
       },
     });
 
-    // 如果监听的是ref ,那么普通数据类型是能过够直接拿到新值和旧值的，但是如果需要监听对象的变化，那么需要使用 deep:true
     watch(
-      () => options.value,
-      (newVal, oldVal) => {
-        console.log(newVal, oldVal);
-      },
-      {
-        deep: true,
+      () => options.value.title,
+      (newValue, oldValue, onInvalidate) => {
+        console.log(newValue, oldValue);
+        onInvalidate(() => {
+          console.log("watch 做一些清理操作");
+        });
       }
     );
-
-    watch(
-      () => options.value,
-      (newVal, oldVal) => {
-        console.log(newVal, oldVal);
-      }
-    );
+    watchEffect((onInvalidate) => {
+      console.log(options.value.title);
+      console.log(options.value.user.name);
+      onInvalidate(() => {
+        console.log("watchEffect 做一些清理操作");
+      });
+    });
 
     return { messages, options, searchTerm, searchedMessages };
   },
