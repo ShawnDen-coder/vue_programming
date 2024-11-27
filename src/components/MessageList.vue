@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ul>
+    <div v-if="loading">loading...</div>
+    <ul v-else>
       <MessageListItem
         v-for="msg in messages"
         :key="msg.id"
@@ -13,23 +14,32 @@
 </template>
 
 <script>
-import { ref, reactive, computed, watch, watchEffect } from "vue";
+import { ref, reactive, computed, watch, watchEffect, onMounted } from "vue";
 import MessageListItem from "./MessageListItem.vue";
 export default {
   components: {
     MessageListItem,
   },
   setup() {
-    const messages = ref([
-      { id: 1, content: "这是一条消息提醒1" },
-      { id: 2, content: "这是一条消息提醒2" },
-      { id: 3, content: "这是一条消息提醒3" },
-    ]);
+    const messages = ref([]);
+    const loading = ref(false);
+    onMounted(() => {
+      loading.value = true;
+      setTimeout(() => {
+        messages.value = [
+          { id: 1, content: "这是一条消息提醒1" },
+          { id: 2, content: "这是一条消息提醒2" },
+          { id: 3, content: "这是一条消息提醒3" },
+        ];
+        loading.value = false;
+      }, 2000);
+    });
+
     function removeMessage(id) {
       messages.value = messages.value.filter((msg) => msg.id !== id);
     }
 
-    return { messages, removeMessage };
+    return { messages, removeMessage, loading };
   },
 };
 </script>
