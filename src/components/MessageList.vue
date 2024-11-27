@@ -4,7 +4,9 @@
       <MessageListItem
         v-for="msg in messages"
         :key="msg.id"
+        :id="msg.id"
         :msg="msg.content"
+        @remove="removeMessage"
       />
     </ul>
   </div>
@@ -23,12 +25,11 @@ export default {
       { id: 2, content: "这是一条消息提醒2" },
       { id: 3, content: "这是一条消息提醒3" },
     ]);
+    function removeMessage(id) {
+      messages.value = messages.value.filter((msg) => msg.id !== id);
+    }
 
-    setTimeout(() => {
-      messages.value[1].content = "这是一条消息提醒2-2";
-    }, 1500);
-
-    return { messages };
+    return { messages, removeMessage };
   },
 };
 </script>

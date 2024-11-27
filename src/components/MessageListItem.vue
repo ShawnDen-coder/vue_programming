@@ -1,24 +1,21 @@
 <template>
-  <li>{{ msg }}</li>
+  <li>
+    <p>{{ msg }}</p>
+    <button @click="emitevent(id)">删除消息</button>
+  </li>
 </template>
 
 <script>
 import { watch, toRefs } from "vue";
 
 export default {
-  props: ["msg"],
-  setup(props) {
-    console.log(props.msg);
-    const { msg } = toRefs(props);
-
-    watch(
-      () => msg.value,
-      (newVal, oldVal) => {
-        console.log(newVal, oldVal);
-      }
-    );
-
-    return {};
+  props: ["msg", "id"],
+  emits: ["remove"],
+  setup(props, { emit }) {
+    function emitevent(id) {
+      emit("remove", id);
+    }
+    return { emitevent };
   },
 };
 </script>
