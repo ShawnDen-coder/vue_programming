@@ -1,16 +1,17 @@
 <template>
   <main>
-    <div class="container"><MessageList /></div>
+    <div>
+      <AutoFocus />
+    </div>
   </main>
 </template>
 
 <script>
-import MessageList from "./components/MessageList.vue";
+import AutoFocus from "./components/AutoFocus.vue";
 export default {
   components: {
-    MessageList,
+    AutoFocus,
   },
-  setup() {},
 };
 </script>
 
@@ -39,8 +40,5 @@ body {
   max-width: 100%;
   display: grid;
   place-items: center;
-}
-
-.container {
 }
 </style>
