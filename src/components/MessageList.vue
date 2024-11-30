@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="sortByKey('content', 'desc')">排序</button>
     <ul>
       <MessageListItem
         v-for="msg in messages"
@@ -21,13 +22,17 @@ export default {
     MessageListItem,
   },
   setup() {
-    const { dataRef: messages, removeItem: removeMessage } = useListData([
+    const {
+      dataRef: messages,
+      removeItem: removeMessage,
+      sortByKey,
+    } = useListData([
       { id: 1, content: "这是一条消息提醒1" },
       { id: 2, content: "这是一条消息提醒2" },
       { id: 3, content: "这是一条消息提醒3" },
     ]);
 
-    return { messages, removeMessage };
+    return { messages, removeMessage, sortByKey };
   },
 };
 </script>
