@@ -23,8 +23,19 @@
   </div>
 </template>
 <script>
+import useListData from "../composables/useListData";
 export default {
-  setup() {},
+  setup() {
+    const { dataRef: users, removeItem: removeUser } = useListData([
+      {
+        id: 1,
+        username: "zhangsan",
+        email: "shawndeng@qq.com",
+        phone: 123456789,
+      },
+    ]);
+    return { users, removeUser };
+  },
 };
 </script>
 <style scoped>

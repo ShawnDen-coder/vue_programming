@@ -1,14 +1,17 @@
 <template>
   <main>
     <div class="container"><MessageList /></div>
+    <UserTable />
   </main>
 </template>
 
 <script>
 import MessageList from "./components/MessageList.vue";
+import UserTable from "./components/UserTable.vue";
 export default {
   components: {
     MessageList,
+    UserTable,
   },
   setup() {},
 };
