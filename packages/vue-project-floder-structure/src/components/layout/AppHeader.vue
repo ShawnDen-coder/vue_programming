@@ -15,24 +15,24 @@ const { bookmarkedCount } = storeToRefs(articleStore)
       <RouterLink class="brand" to="/">
         <span class="brand__mark">V</span>
         <span>
-          <strong>Vue Structure Lab</strong>
-          <small>folder strategy with router + pinia</small>
+          <strong>Vue 目录结构实验室</strong>
+          <small>用 router 和 pinia 演示目录分层</small>
         </span>
       </RouterLink>
 
       <nav class="site-nav" aria-label="Primary">
         <RouterLink :class="['site-nav__link', { 'is-active': route.name === 'home' }]" to="/">
-          Home
+          首页
         </RouterLink>
         <RouterLink
           :class="['site-nav__link', { 'is-active': route.name === 'article-detail' }]"
-          :to="{ name: 'article-detail', params: { slug: 'pages-first-structure' } }"
+          :to="{ name: 'article-detail', params: { slug: 'src-root-overview' } }"
         >
-          Article Page
+          目录说明页
         </RouterLink>
       </nav>
 
-      <p class="site-header__meta">Bookmarks {{ bookmarkedCount }}</p>
+      <p class="site-header__meta">收藏 {{ bookmarkedCount }}</p>
     </div>
   </header>
 </template>

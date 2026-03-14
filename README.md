@@ -21,7 +21,7 @@ pnpm init
 
 ```yaml
 packages:
-  - "packages/*"
+  - 'packages/*'
 ```
 
 ### 2) 创建 Vue + TypeScript 项目
@@ -70,5 +70,5 @@ pnpm -r run build
 
 ```yaml
 packages:
-  - "packages/*"
+  - 'packages/*'
 ```

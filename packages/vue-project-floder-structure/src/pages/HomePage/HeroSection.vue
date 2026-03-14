@@ -10,32 +10,35 @@ defineProps<{
 <template>
   <section class="hero-section container">
     <div class="hero-section__copy">
-      <p class="eyebrow">Scalable Vue folders</p>
-      <h1 class="section-title">A Vue app that mirrors the article's folder structure advice.</h1>
+      <p class="eyebrow">Vue 目录结构</p>
+      <h1 class="section-title">用 folder tree 理解 Vue 项目的目录分层。</h1>
       <p class="section-lead">
-        The project starts with pages, then splits reusable UI, layout shell pieces, shared common helpers, and article domain components.
+        这个示例把文章里的建议改成了中文版本，并且把重点收敛到目录树本身，让你先看清层级，再看每个目录承担什么职责。
       </p>
       <div class="hero-section__actions">
         <AppButton :to="{ name: 'article-detail', params: { slug: featuredArticle.slug } }">
-          Open featured article
+          查看目录说明页
         </AppButton>
-        <AppButton variant="secondary" href="https://vuejs.org/style-guide/rules-essential#use-multi-word-component-names">
-          Vue naming guide
+        <AppButton
+          variant="secondary"
+          href="https://vuejs.org/style-guide/rules-essential#use-multi-word-component-names"
+        >
+          Vue 命名规范
         </AppButton>
       </div>
     </div>
     <div class="hero-section__panel">
-      <p class="chip">Featured</p>
+      <p class="chip">推荐入口</p>
       <h2>{{ featuredArticle.title }}</h2>
       <p>{{ featuredArticle.summary }}</p>
       <dl>
         <div>
-          <dt>Folder</dt>
-          <dd>{{ featuredArticle.folder }}</dd>
+          <dt>目录</dt>
+          <dd>{{ featuredArticle.path }}</dd>
         </div>
         <div>
-          <dt>Reading time</dt>
-          <dd>{{ featuredArticle.minutes }} min</dd>
+          <dt>说明页</dt>
+          <dd>{{ featuredArticle.minutes }} 分钟</dd>
         </div>
       </dl>
     </div>
