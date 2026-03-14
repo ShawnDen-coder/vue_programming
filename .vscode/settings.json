@@ -35,5 +35,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.eol": "\n",
-  "prettier.configPath": ".prettierrc.json"
+  "prettier.configPath": ".prettierrc.json",
+  "tailwindCSS.lint.suggestCanonicalClasses": "ignore"
 }

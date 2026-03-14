@@ -41,48 +41,21 @@ const componentProps = computed(() => {
 
   return { type: 'button' }
 })
+
+const buttonClass = computed(() => {
+  const baseClass =
+    'inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-5 py-3.5 font-bold no-underline transition duration-200 hover:-translate-y-0.5'
+
+  if (props.variant === 'secondary') {
+    return `${baseClass} border-line bg-white/70 text-ink-strong`
+  }
+
+  return `${baseClass} border-transparent bg-brand text-white hover:bg-brand-strong`
+})
 </script>
 
 <template>
-  <component :is="componentTag" class="app-button" :class="`is-${variant}`" v-bind="componentProps">
+  <component :is="componentTag" :class="buttonClass" v-bind="componentProps">
     <slot />
   </component>
 </template>
-
-<style scoped>
-.app-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 48px;
-  padding: 0.85rem 1.2rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  text-decoration: none;
-  font-weight: 700;
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease;
-}
-
-.app-button:hover {
-  transform: translateY(-1px);
-}
-
-.app-button.is-primary {
-  background: var(--brand);
-  color: white;
-}
-
-.app-button.is-primary:hover {
-  background: var(--brand-strong);
-}
-
-.app-button.is-secondary {
-  border-color: var(--line);
-  background: rgba(255, 255, 255, 0.72);
-  color: var(--ink-strong);
-}
-</style>
