@@ -24,8 +24,8 @@ function handleSelect(item: FolderTreeItem) {
 </script>
 
 <template>
-  <section class="structure-highlights container">
-    <div class="structure-highlights__heading">
+  <section class="container py-4 pb-8">
+    <div class="mb-panel grid gap-3">
       <p class="eyebrow">Folder Tree</p>
       <h2>按目录层级理解，而不是只看文件名</h2>
       <p class="section-lead">
@@ -33,20 +33,23 @@ function handleSelect(item: FolderTreeItem) {
       </p>
     </div>
 
-    <div class="structure-highlights__content">
-      <div class="structure-highlights__tree">
+    <div class="grid items-start gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)]">
+      <div class="rounded-lg border border-line bg-white/72 p-panel shadow-soft">
         <FolderTree :items="items" :active-path="selectedPath" @select="handleSelect" />
       </div>
 
-      <aside v-if="activeItem" class="structure-highlights__detail">
+      <aside
+        v-if="activeItem"
+        class="grid gap-4 rounded-lg border border-line bg-white/72 p-panel shadow-soft lg:sticky lg:top-23"
+      >
         <p class="chip">当前选中</p>
-        <h3>{{ activeItem.name }}</h3>
-        <p class="structure-highlights__path">{{ activeItem.path }}</p>
-        <p class="structure-highlights__summary">
+        <h3 class="m-0 text-2xl text-ink-strong">{{ activeItem.name }}</h3>
+        <p class="m-0 font-bold text-brand-strong">{{ activeItem.path }}</p>
+        <p class="m-0 text-ink-soft">
           {{ activeItem.summary ?? activeItem.description }}
         </p>
 
-        <ul v-if="activeItem.highlights?.length" class="structure-highlights__list">
+        <ul v-if="activeItem.highlights?.length" class="m-0 pl-note text-ink-soft">
           <li v-for="highlight in activeItem.highlights" :key="highlight">
             {{ highlight }}
           </li>
@@ -55,83 +58,3 @@ function handleSelect(item: FolderTreeItem) {
     </div>
   </section>
 </template>
-
-<style scoped>
-.structure-highlights {
-  padding: 1rem 0 2rem;
-}
-
-.structure-highlights__heading {
-  display: grid;
-  gap: 0.8rem;
-  margin-bottom: 1.4rem;
-}
-
-.structure-highlights__heading h2,
-.structure-highlights__heading p {
-  margin: 0;
-}
-
-.structure-highlights__heading h2 {
-  color: var(--ink-strong);
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
-}
-
-.structure-highlights__content {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.structure-highlights__tree,
-.structure-highlights__detail {
-  padding: 1.4rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(219, 228, 240, 0.9);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: var(--shadow);
-}
-
-.structure-highlights__detail h3,
-.structure-highlights__detail p,
-.structure-highlights__list {
-  margin: 0;
-}
-
-.structure-highlights__detail {
-  display: grid;
-  gap: 1rem;
-  position: sticky;
-  top: 92px;
-}
-
-.structure-highlights__detail h3 {
-  color: var(--ink-strong);
-  font-size: 1.5rem;
-}
-
-.structure-highlights__path {
-  color: var(--brand-strong);
-  font-weight: 700;
-}
-
-.structure-highlights__summary,
-.structure-highlights__list {
-  color: var(--ink-soft);
-}
-
-.structure-highlights__list {
-  padding-left: 1.1rem;
-}
-
-@media (max-width: 920px) {
-  .structure-highlights__content {
-    grid-template-columns: 1fr;
-  }
-
-  .structure-highlights__detail {
-    position: static;
-  }
-}
-</style>

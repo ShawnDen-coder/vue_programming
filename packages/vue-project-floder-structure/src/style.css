@@ -1,3 +1,25 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink-strong: #1f2937;
+  --color-ink-soft: #64748b;
+  --color-brand: #0f766e;
+  --color-brand-strong: #115e59;
+  --color-line: #dbe4f0;
+  --color-accent: #f59e0b;
+  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+  --radius-brand: 0.9rem;
+  --spacing-note: 1.1rem;
+  --spacing-panel: 1.4rem;
+  --spacing-card: 1.6rem;
+  --spacing-soft: 0.65rem;
+  --spacing-offset-xs: 0.3rem;
+  --text-tree: 1.05rem;
+  --text-meta: 0.95rem;
+  --blur-shell: 18px;
+  --blur-card: 10px;
+}
+
 :root {
   --ink-strong: #1f2937;
   --ink: #475569;
@@ -67,16 +89,6 @@ code {
 
 #app {
   min-height: 100vh;
-}
-
-.app-shell {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-main {
-  flex: 1;
 }
 
 .container {

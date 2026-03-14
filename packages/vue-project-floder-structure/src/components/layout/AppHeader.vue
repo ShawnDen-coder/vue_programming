@@ -10,121 +10,44 @@ const { bookmarkedCount } = storeToRefs(articleStore)
 </script>
 
 <template>
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <RouterLink class="brand" to="/">
-        <span class="brand__mark">V</span>
+  <header class="sticky top-0 z-10 border-b border-line/80 bg-slate-50/80 py-4 backdrop-blur-shell">
+    <div class="container flex flex-wrap items-center justify-between gap-4">
+      <RouterLink class="inline-flex items-center gap-4 text-inherit no-underline" to="/">
+        <span
+          class="grid h-10 w-10 place-items-center rounded-brand bg-linear-to-br from-brand to-teal-400 font-extrabold text-white"
+          >V</span
+        >
         <span>
-          <strong>Vue 目录结构实验室</strong>
-          <small>用 router 和 pinia 演示目录分层</small>
+          <strong class="block text-ink-strong">Vue 目录结构实验室</strong>
+          <small class="block text-ink-soft">用 router 和 pinia 演示目录分层</small>
         </span>
       </RouterLink>
 
-      <nav class="site-nav" aria-label="Primary">
-        <RouterLink :class="['site-nav__link', { 'is-active': route.name === 'home' }]" to="/">
+      <nav
+        class="order-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-line/85 bg-white/75 p-1 sm:order-0 sm:w-auto"
+        aria-label="Primary"
+      >
+        <RouterLink
+          :class="[
+            'rounded-full px-4 py-2 font-bold no-underline',
+            route.name === 'home' ? 'bg-brand/10 text-brand-strong' : 'text-ink-soft',
+          ]"
+          to="/"
+        >
           首页
         </RouterLink>
         <RouterLink
-          :class="['site-nav__link', { 'is-active': route.name === 'article-detail' }]"
+          :class="[
+            'rounded-full px-4 py-2 font-bold no-underline',
+            route.name === 'article-detail' ? 'bg-brand/10 text-brand-strong' : 'text-ink-soft',
+          ]"
           :to="{ name: 'article-detail', params: { slug: 'src-root-overview' } }"
         >
           目录说明页
         </RouterLink>
       </nav>
 
-      <p class="site-header__meta">收藏 {{ bookmarkedCount }}</p>
+      <p class="m-0 text-meta text-ink-soft">收藏 {{ bookmarkedCount }}</p>
     </div>
   </header>
 </template>
-
-<style scoped>
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  padding: 1rem 0;
-  backdrop-filter: blur(18px);
-  background: rgba(248, 250, 252, 0.78);
-  border-bottom: 1px solid rgba(219, 228, 240, 0.8);
-}
-
-.site-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
-  text-decoration: none;
-  color: inherit;
-}
-
-.brand strong,
-.brand small {
-  display: block;
-}
-
-.brand strong {
-  color: var(--ink-strong);
-}
-
-.brand small {
-  color: var(--ink-soft);
-}
-
-.brand__mark {
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 0.9rem;
-  background: linear-gradient(135deg, var(--brand), #14b8a6);
-  color: white;
-  font-weight: 800;
-}
-
-.site-nav {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(219, 228, 240, 0.85);
-}
-
-.site-nav__link {
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  text-decoration: none;
-  color: var(--ink-soft);
-  font-weight: 700;
-}
-
-.site-nav__link.is-active {
-  background: rgba(15, 118, 110, 0.12);
-  color: var(--brand-strong);
-}
-
-.site-header__meta {
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--ink-soft);
-}
-
-@media (max-width: 800px) {
-  .site-header__inner {
-    flex-wrap: wrap;
-  }
-
-  .site-nav {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-  }
-}
-</style>

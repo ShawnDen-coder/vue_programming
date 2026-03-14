@@ -6,33 +6,8 @@ defineProps<{
 </script>
 
 <template>
-  <div class="empty-state">
-    <p class="empty-state__title">{{ title }}</p>
-    <p class="empty-state__description">{{ description }}</p>
+  <div class="rounded-md border border-dashed border-line bg-white/65 p-6 text-center">
+    <p class="m-0 font-bold text-ink-strong">{{ title }}</p>
+    <p class="mt-1.5 mb-0 text-ink-soft">{{ description }}</p>
   </div>
 </template>
-
-<style scoped>
-.empty-state {
-  padding: 1.5rem;
-  border: 1px dashed var(--line);
-  border-radius: var(--radius-md);
-  text-align: center;
-  background: rgba(255, 255, 255, 0.65);
-}
-
-.empty-state__title,
-.empty-state__description {
-  margin: 0;
-}
-
-.empty-state__title {
-  font-weight: 700;
-  color: var(--ink-strong);
-}
-
-.empty-state__description {
-  margin-top: 0.4rem;
-  color: var(--ink-soft);
-}
-</style>

@@ -19,18 +19,18 @@ const relatedArticles = computed(() =>
 </script>
 
 <template>
-  <section class="article-page container">
+  <section class="container grid gap-6 py-12 max-[840px]:pt-8">
     <template v-if="article">
       <ArticleTitle :article="article" />
 
       <LastArticlesSection :articles="relatedArticles" />
 
-      <div class="article-page__content">
-        <div class="article-page__prose">
+      <div class="grid gap-4 rounded-md border border-line bg-white/84 p-card shadow-soft">
+        <div class="grid gap-4">
           <p>
             当前目录：<code>{{ article.path }}</code>
           </p>
-          <ul>
+          <ul class="m-0 pl-note text-ink-soft">
             <li v-for="highlight in article.highlights" :key="highlight">{{ highlight }}</li>
           </ul>
         </div>
@@ -44,53 +44,3 @@ const relatedArticles = computed(() =>
     />
   </section>
 </template>
-
-<style scoped>
-.article-page {
-  display: grid;
-  gap: 1.5rem;
-  padding: 3rem 0;
-}
-
-.article-page__content {
-  padding: 1.6rem;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(219, 228, 240, 0.9);
-  background: rgba(255, 255, 255, 0.84);
-  box-shadow: var(--shadow);
-}
-
-.article-page__content {
-  display: grid;
-  gap: 1rem;
-}
-
-.article-page__prose {
-  display: grid;
-  gap: 1rem;
-}
-
-.article-page__prose p,
-.article-page__sidebar-card p,
-.article-page__sidebar-card ul,
-.article-page__prose ul {
-  margin: 0;
-}
-
-.article-page__prose p,
-.article-page__sidebar-card ul,
-.article-page__prose ul {
-  color: var(--ink-soft);
-}
-
-.article-page__prose ul,
-.article-page__sidebar-card ul {
-  padding-left: 1.1rem;
-}
-
-@media (max-width: 840px) {
-  .article-page {
-    padding-top: 2rem;
-  }
-}
-</style>

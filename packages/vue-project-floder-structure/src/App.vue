@@ -6,9 +6,9 @@ import AppHeader from './components/layout/AppHeader.vue'
 </script>
 
 <template>
-  <div class="app-shell">
+  <div class="flex min-h-screen flex-col">
     <AppHeader />
-    <main class="app-main">
+    <main class="flex-1">
       <RouterView />
     </main>
     <AppFooter />

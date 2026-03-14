@@ -8,31 +8,10 @@ defineProps<{
 </script>
 
 <template>
-  <section class="last-articles-section">
-    <div class="last-articles-section__heading">
-      <h2>切换目录</h2>
+  <section class="grid gap-4">
+    <div class="grid gap-1.5">
+      <h2 class="m-0 text-[clamp(1.4rem,3vw,2rem)] text-ink-strong">切换目录</h2>
     </div>
     <ArticleList :articles="articles" />
   </section>
 </template>
-
-<style scoped>
-.last-articles-section {
-  display: grid;
-  gap: 1rem;
-}
-
-.last-articles-section__heading {
-  display: grid;
-  gap: 0.4rem;
-}
-
-.last-articles-section__heading h2 {
-  margin: 0;
-}
-
-.last-articles-section__heading h2 {
-  color: var(--ink-strong);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-}
-</style>

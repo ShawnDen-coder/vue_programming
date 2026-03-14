@@ -23,20 +23,28 @@ function handleSelect(item: FolderTreeItem) {
 </script>
 
 <template>
-  <ul class="folder-tree">
-    <li v-for="item in items" :key="item.path" class="folder-tree__item">
+  <ul class="m-0 grid list-none gap-3 p-0">
+    <li v-for="item in items" :key="item.path" class="grid gap-3">
       <button
         type="button"
-        class="folder-tree__row"
-        :class="{ 'is-active': item.path === activePath }"
+        class="w-full cursor-pointer rounded-md border border-line bg-white/82 px-note py-4 text-left shadow-soft"
+        :class="item.path === activePath ? 'border-brand/60 bg-brand/10' : ''"
         :style="{ '--level': String(level) }"
         @click="handleSelect(item)"
       >
-        <div class="folder-tree__title-wrap">
-          <span class="folder-tree__name">{{ item.name }}</span>
+        <div
+          class="flex flex-wrap items-center gap-soft"
+          :style="{ paddingLeft: `calc(1rem + ${level} * 1.25rem)` }"
+        >
+          <span class="text-tree font-bold text-ink-strong">{{ item.name }}</span>
           <code>{{ item.path }}</code>
         </div>
-        <p class="folder-tree__description">{{ item.description }}</p>
+        <p
+          class="mb-0 mt-3 text-ink-soft"
+          :style="{ paddingLeft: `calc(1rem + ${level} * 1.25rem)` }"
+        >
+          {{ item.description }}
+        </p>
       </button>
 
       <FolderTree
@@ -49,53 +57,3 @@ function handleSelect(item: FolderTreeItem) {
     </li>
   </ul>
 </template>
-
-<style scoped>
-.folder-tree {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.9rem;
-}
-
-.folder-tree__item {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.folder-tree__row {
-  width: 100%;
-  text-align: left;
-  padding: 1rem 1.1rem;
-  padding-left: calc(1rem + var(--level) * 1.25rem);
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(219, 228, 240, 0.9);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-}
-
-.folder-tree__row.is-active {
-  border-color: rgba(15, 118, 110, 0.55);
-  background: rgba(15, 118, 110, 0.1);
-}
-
-.folder-tree__title-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-.folder-tree__name {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--ink-strong);
-}
-
-.folder-tree__description {
-  margin: 0.75rem 0 0;
-  color: var(--ink-soft);
-}
-</style>
