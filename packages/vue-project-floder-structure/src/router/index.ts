@@ -1,20 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import type { App } from 'vue'
+import { router } from './router'
 
-export const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: () => import('@/pages/HomePage/index.vue'),
-    },
-    {
-      path: '/articles/:slug',
-      name: 'article-detail',
-      component: () => import('@/pages/ArticlePage/index.vue'),
-    },
-  ],
-  scrollBehavior() {
-    return { top: 0 }
-  },
-})
+export { router }
+
+export function setupRouter(app: App) {
+  app.use(router)
+}
