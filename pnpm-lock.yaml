@@ -6,6 +6,12 @@ settings:
 
 importers:
 
+  .:
+    devDependencies:
+      prettier:
+        specifier: ^3.8.1
+        version: 3.8.1
+
   packages/learn-pinia:
     dependencies:
       pinia:
@@ -443,6 +449,11 @@ packages:
     resolution: {integrity: sha512-OW/rX8O/jXnm82Ey1k44pObPtdblfiuWnrd8X7GJ7emImCOstunGbXUpp7HdBrFQX6rJzn3sPT397Wp5aCwCHg==, tarball: https://registry.npmjs.org/postcss/-/postcss-8.5.8.tgz}
     engines: {node: ^10 || ^12 || >=14}
 
+  prettier@3.8.1:
+    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==, tarball: https://registry.npmjs.org/prettier/-/prettier-3.8.1.tgz}
+    engines: {node: '>=14'}
+    hasBin: true
+
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==, tarball: https://registry.npmjs.org/rfdc/-/rfdc-1.4.1.tgz}
 
@@ -860,6 +871,8 @@ snapshots:
       nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  prettier@3.8.1: {}
 
   rfdc@1.4.1: {}
 

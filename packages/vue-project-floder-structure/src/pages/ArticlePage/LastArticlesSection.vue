@@ -10,11 +10,7 @@ defineProps<{
 <template>
   <section class="last-articles-section">
     <div class="last-articles-section__heading">
-      <p class="eyebrow">Related articles</p>
-      <h2>Keep domain widgets reusable across pages</h2>
-      <p class="section-lead">
-        This section is page-specific, but it reuses the shared article list so domain behavior stays centralized.
-      </p>
+      <h2>切换目录</h2>
     </div>
     <ArticleList :articles="articles" />
   </section>
@@ -28,11 +24,10 @@ defineProps<{
 
 .last-articles-section__heading {
   display: grid;
-  gap: 0.8rem;
+  gap: 0.4rem;
 }
 
-.last-articles-section__heading h2,
-.last-articles-section__heading p {
+.last-articles-section__heading h2 {
   margin: 0;
 }
 

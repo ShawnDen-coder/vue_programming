@@ -12,11 +12,7 @@ defineProps<{
   <div v-if="articles.length" class="article-list grid">
     <ArticleCard v-for="article in articles" :key="article.slug" :article="article" />
   </div>
-  <EmptyState
-    v-else
-    title="No articles available"
-    description="The domain-specific article list stays reusable and handles empty results in one place."
-  />
+  <EmptyState v-else title="暂无目录说明" description="当前列表没有可展示的目录入口。" />
 </template>
 
 <style scoped>

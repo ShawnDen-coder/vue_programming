@@ -2,12 +2,14 @@
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <div>
-        <p class="site-footer__title">Built to mirror the article's advice</p>
+        <p class="site-footer__title">示例目标</p>
         <p class="site-footer__text">
-          Pages own page-only pieces, layout stays at the shell, and domain components stay inside their domain.
+          首页负责展示目录树，详情页只做简化说明，用最少页面文案把目录层级讲清楚。
         </p>
       </div>
-      <p class="site-footer__text">Vue 3, Vue Router, Pinia, and a structure that can scale past the starter template.</p>
+      <p class="site-footer__text">
+        Vue 3、Vue Router、Pinia，以及一套更适合继续扩展的项目目录结构。
+      </p>
     </div>
   </footer>
 </template>

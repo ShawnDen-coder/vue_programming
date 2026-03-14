@@ -8,14 +8,14 @@ defineProps<{
 
 <template>
   <header class="article-title">
-    <p class="eyebrow">Page-private component</p>
+    <p class="eyebrow">目录说明页</p>
     <h1 class="section-title">{{ article.title }}</h1>
     <p class="section-lead">{{ article.summary }}</p>
     <div class="article-title__meta">
-      <span class="chip">{{ article.folder }}</span>
+      <span class="chip">{{ article.path }}</span>
       <span>{{ article.level }}</span>
-      <span>{{ article.minutes }} min read</span>
-      <span>Updated {{ article.updatedAt }}</span>
+      <span>{{ article.minutes }} 分钟</span>
+      <span>更新于 {{ article.updatedAt }}</span>
     </div>
   </header>
 </template>

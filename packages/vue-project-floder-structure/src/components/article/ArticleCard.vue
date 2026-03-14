@@ -22,8 +22,12 @@ const isBookmarked = computed(() => bookmarkedSlugs.value.includes(props.article
     <article class="article-card">
       <div class="article-card__top">
         <span class="chip">{{ article.folder }}</span>
-        <button class="article-card__bookmark" type="button" @click="articleStore.toggleBookmark(article.slug)">
-          {{ isBookmarked ? 'Saved' : 'Save' }}
+        <button
+          class="article-card__bookmark"
+          type="button"
+          @click="articleStore.toggleBookmark(article.slug)"
+        >
+          {{ isBookmarked ? '已收藏' : '收藏' }}
         </button>
       </div>
 
@@ -37,12 +41,12 @@ const isBookmarked = computed(() => bookmarkedSlugs.value.includes(props.article
 
       <dl class="article-card__meta">
         <div>
-          <dt>Level</dt>
+          <dt>类型</dt>
           <dd>{{ article.level }}</dd>
         </div>
         <div>
-          <dt>Read</dt>
-          <dd>{{ article.minutes }} min</dd>
+          <dt>路径</dt>
+          <dd>{{ article.path }}</dd>
         </div>
       </dl>
     </article>
