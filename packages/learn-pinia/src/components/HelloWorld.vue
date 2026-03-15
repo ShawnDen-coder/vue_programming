@@ -1,93 +1,43 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import viteLogo from '../assets/vite.svg'
-import heroImg from '../assets/hero.png'
-import vueLogo from '../assets/vue.svg'
+import { onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useCounterStore } from '../stores/counter'
 
-const count = ref(0)
+const counterStore = useCounterStore()
+const { counter, name, doubleCount, userList, currentUser, userCount, loading, errorMessage } =
+  storeToRefs(counterStore)
+const { increment, fetchUsers, resetState } = counterStore
+
+// 演示 $patch：一次性更新多个字段
+function applyProfile() {
+  counterStore.$patch({
+    name: 'Pinia Learner',
+    counter: counter.value + 5,
+  })
+}
+
+onMounted(() => {
+  void fetchUsers()
+})
 </script>
 
 <template>
   <section id="center">
-    <div class="hero">
-      <img :src="heroImg" class="base" width="170" height="179" alt="" />
-      <img :src="vueLogo" class="framework" alt="Vue logo" />
-      <img :src="viteLogo" class="vite" alt="Vite logo" />
-    </div>
-    <div>
-      <h1>Get started</h1>
-      <p>Edit <code>src/App.vue</code> and save to test <code>HMR</code></p>
-    </div>
-    <button class="counter" @click="count++">Count is {{ count }}</button>
+    <p>Name: {{ name }}</p>
+    <p>Count: {{ counter }}</p>
+    <p>Double: {{ doubleCount }}</p>
+    <p>User Count: {{ userCount }}</p>
+    <p>Current User: {{ currentUser?.name ?? '暂无' }}</p>
+    <p v-if="loading">正在加载用户...</p>
+    <p v-if="errorMessage">{{ errorMessage }}</p>
+
+    <ul>
+      <li v-for="user in userList" :key="user.id">{{ user.name }} - {{ user.age }}</li>
+    </ul>
+
+    <button class="counter" @click="increment">+1</button>
+    <button class="counter" @click="fetchUsers">重新加载用户</button>
+    <button class="counter" @click="applyProfile">$patch 批量更新</button>
+    <button class="counter" @click="resetState">重置状态</button>
   </section>
-
-  <div class="ticks"></div>
-
-  <section id="next-steps">
-    <div id="docs">
-      <svg class="icon" role="presentation" aria-hidden="true">
-        <use href="/icons.svg#documentation-icon"></use>
-      </svg>
-      <h2>Documentation</h2>
-      <p>Your questions, answered</p>
-      <ul>
-        <li>
-          <a href="https://vite.dev/" target="_blank">
-            <img class="logo" :src="viteLogo" alt="" />
-            Explore Vite
-          </a>
-        </li>
-        <li>
-          <a href="https://vuejs.org/" target="_blank">
-            <img class="button-icon" :src="vueLogo" alt="" />
-            Learn more
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div id="social">
-      <svg class="icon" role="presentation" aria-hidden="true">
-        <use href="/icons.svg#social-icon"></use>
-      </svg>
-      <h2>Connect with us</h2>
-      <p>Join the Vite community</p>
-      <ul>
-        <li>
-          <a href="https://github.com/vitejs/vite" target="_blank">
-            <svg class="button-icon" role="presentation" aria-hidden="true">
-              <use href="/icons.svg#github-icon"></use>
-            </svg>
-            GitHub
-          </a>
-        </li>
-        <li>
-          <a href="https://chat.vite.dev/" target="_blank">
-            <svg class="button-icon" role="presentation" aria-hidden="true">
-              <use href="/icons.svg#discord-icon"></use>
-            </svg>
-            Discord
-          </a>
-        </li>
-        <li>
-          <a href="https://x.com/vite_js" target="_blank">
-            <svg class="button-icon" role="presentation" aria-hidden="true">
-              <use href="/icons.svg#x-icon"></use>
-            </svg>
-            X.com
-          </a>
-        </li>
-        <li>
-          <a href="https://bsky.app/profile/vite.dev" target="_blank">
-            <svg class="button-icon" role="presentation" aria-hidden="true">
-              <use href="/icons.svg#bluesky-icon"></use>
-            </svg>
-            Bluesky
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <div class="ticks"></div>
-  <section id="spacer"></section>
 </template>
