@@ -62,13 +62,60 @@ pnpm --filter learn-pina add pinia
 pnpm -r run build
 ```
 
-## 常见问题
+### 8) 在 workspace 内让一个 lib 依赖另一个 lib
 
-### 报错：`packages field is not an array`
+先确保两个子包都有唯一包名（示例）：
 
-检查 `pnpm-workspace.yaml` 是否是如下格式：
+```json
+{
+  "name": "@shawnden-coder/lib-a"
+}
+```
 
-```yaml
-packages:
-  - 'packages/*'
+```json
+{
+  "name": "@shawnden-coder/lib-b"
+}
+```
+
+在根目录执行，把 lib-b 作为 lib-a 的依赖：
+
+```bash
+pnpm --filter @shawnden-coder/lib-a add @shawnden-coder/lib-b@workspace:*
+```
+
+说明：你提到的 ShawnDen-coder 在 npm 包名里建议使用小写，即 `@shawnden-coder`。
+
+### 9) `workspace:*` 是什么意思
+
+- `workspace:*` 表示依赖必须从当前 workspace 内解析。
+- `*` 表示版本范围不额外限制（使用工作区里的该包）。
+- 安装时会链接到本地工作区包，而不是从 npm 重新下载同名包。
+
+常见对比：
+
+- `workspace:*`：最宽松，直接使用工作区里的包。
+- `workspace:^`：使用工作区包，并按 `^` 语义记录版本范围。
+- `workspace:~`：使用工作区包，并按 `~` 语义记录版本范围。
+
+### 10) 不使用 scope 的 lib 命名示例
+
+如果你的包名不带 scope，也可以这样配置：
+
+```json
+{
+  "name": "lib-a"
+}
+```
+
+```json
+{
+  "name": "lib-b"
+}
+```
+
+在根目录执行：
+
+```bash
+pnpm --filter lib-a add lib-b@workspace:*
 ```
